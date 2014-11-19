@@ -1,0 +1,12 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">4dp</dimen>
+    <dimen name="activity_vertical_margin">4dp</dimen>
+
+    <dimen name="image_button_size">72dp</dimen>
+
+    <dimen name="current_playing_width">8dp</dimen>
+    <dimen name="current_playing_height">60dp</dimen>
+
+    <dimen name="playlist_item_name_text_size">28sp</dimen>
+</resources>
