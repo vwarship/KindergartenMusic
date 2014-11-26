@@ -1,17 +1,14 @@
 package com.zaoqibu.zaoqibukindergartenmusic;
 
 import android.app.Activity;
-import android.content.res.AssetFileDescriptor;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 
-import java.io.IOException;
+import com.zaoqibu.zaoqibukindergartenmusic.domain.Playlist;
 
 
 public class PlaylistItemDetailActivity extends Activity {

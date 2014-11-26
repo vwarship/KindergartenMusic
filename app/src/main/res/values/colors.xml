@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="nursery_term_background_color">#9F00A7</color>
+    <color name="lower_kindergarten_term_background_color">#DA532C</color>
+    <color name="upper_kindergarten_term_background_color">#00A300</color>
+
     <color name="playlist_background">#FFFFF1E0</color>
     <color name="play_control_background">#FFFAC96C</color>
 

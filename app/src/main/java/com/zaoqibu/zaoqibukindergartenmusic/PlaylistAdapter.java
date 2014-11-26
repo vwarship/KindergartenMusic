@@ -1,13 +1,15 @@
 package com.zaoqibu.zaoqibukindergartenmusic;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.zaoqibu.zaoqibukindergartenmusic.domain.Playlist;
+import com.zaoqibu.zaoqibukindergartenmusic.domain.Sound;
 
 /**
  * Created by vwarship on 2014/10/23.

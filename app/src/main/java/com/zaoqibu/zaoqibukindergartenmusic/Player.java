@@ -5,8 +5,10 @@ import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.util.Log;
 
+import com.zaoqibu.zaoqibukindergartenmusic.domain.Playlist;
+import com.zaoqibu.zaoqibukindergartenmusic.domain.Sound;
+
 import java.io.IOException;
-import java.io.Serializable;
 
 /**
  * Created by vwarship on 2014/10/23.
@@ -41,7 +43,8 @@ public class Player {
         }
 
         try {
-            AssetFileDescriptor afd = context.getResources().openRawResourceFd(sound.getFilenameResId());
+//            AssetFileDescriptor afd = context.getResources().openRawResourceFd(sound.getFilenameResId());
+            AssetFileDescriptor afd = context.getAssets().openFd(sound.getPath());
             mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
             afd.close();
 

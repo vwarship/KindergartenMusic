@@ -1,69 +1,46 @@
 package com.zaoqibu.zaoqibukindergartenmusic;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ListView;
 
+import com.zaoqibu.zaoqibukindergartenmusic.domain.Playlist;
 import com.zaoqibu.zaoqibukindergartenmusic.domain.Terms;
-import com.zaoqibu.zaoqibukindergartenmusic.util.GridViewUtil;
-import com.zaoqibu.zaoqibukindergartenmusic.util.TermFactory;
 
 
-public class MainActivity extends Activity {
-/*    private Player player;
+public class TermActivity extends Activity {
+    public static final String ARG_TERMS = "terms";
+    public static final String ARG_POSITION = "position";
+
+    private Terms terms;
+    private int position;
+
+    private Player player;
     private Playlist playlist;
     private ListView playlistView;
 
     private ImageButton playButton;
     private ImageButton playPreviousButton;
     private ImageButton playNextButton;
-*/
-
-    private static final String TAG = "MainActivity";
-
-    private Terms terms = new Terms();
-
-    public MainActivity() {
-        Log.i(TAG, "MainActivity");
-
-        terms.addTerm(TermFactory.createTermWithNursery1());
-        terms.addTerm(TermFactory.createTermWithNursery2());
-        terms.addTerm(TermFactory.createTermWithLowerKindergarten1());
-        terms.addTerm(TermFactory.createTermWithLowerKindergarten2());
-        terms.addTerm(TermFactory.createTermWithUpperKindergarten1());
-        terms.addTerm(TermFactory.createTermWithUpperKindergarten2());
-
-        //playlist = Playlist.create();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "onCreate");
+        setContentView(R.layout.activity_term);
 
-        setContentView(R.layout.activity_main);
+        terms = (Terms)getIntent().getExtras().get(ARG_TERMS);
+        position = getIntent().getExtras().getInt(ARG_POSITION);
 
-        final int termItemWidth = GridViewUtil.calcItemWidth(this);
+        getActionBar().setTitle(terms.getTerm(position).getName());
 
-        GridView gvTerms = (GridView)findViewById(R.id.gv_terms);
-        gvTerms.setAdapter(new TermAdapter(this, terms, termItemWidth));
-        gvTerms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, TermActivity.class);
-                intent.putExtra(TermActivity.ARG_TERMS, terms);
-                intent.putExtra(TermActivity.ARG_POSITION, position);
-                startActivity(intent);
-            }
-        });
+        playlist = terms.getTerm(position).getPlaylist();
 
-        /*
         initPlaylistView();
         initPlayButton();
         initPlayPrevious();
@@ -73,11 +50,9 @@ public class MainActivity extends Activity {
         player.setContext(this);
         player.setPlaylist(playlist);
 
-        //playSoundByPosition(0);
-        */
+        playSoundByPosition(0);
     }
 
-/*
     private void initPlaylistView() {
         playlistView = (ListView)findViewById(R.id.playlistView);
         playlistView.setAdapter(new PlaylistAdapter(this, playlist));
@@ -189,19 +164,18 @@ public class MainActivity extends Activity {
     private void setPlayImage() {
         playButton.setImageResource(player.isPlaying() ? R.drawable.ic_action_pause : R.drawable.ic_action_play);
     }
-*/
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.i(TAG, "onDestroy");
 
-        //player.close();
+        player.close();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.term, menu);
         return true;
     }
 

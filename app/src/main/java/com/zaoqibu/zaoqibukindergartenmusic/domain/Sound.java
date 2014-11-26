@@ -1,4 +1,4 @@
-package com.zaoqibu.zaoqibukindergartenmusic;
+package com.zaoqibu.zaoqibukindergartenmusic.domain;
 
 import java.io.Serializable;
 
@@ -7,18 +7,18 @@ import java.io.Serializable;
  */
 public class Sound implements Serializable {
     private String name;
-    private int filenameResId;
+    private String path;
 
-    public Sound(String name, int filenameResId) {
+    public Sound(String name, String path) {
         this.name = name;
-        this.filenameResId = filenameResId;
+        this.path = path;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getFilenameResId() {
-        return filenameResId;
+    public String getPath() {
+        return path;
     }
 }
