@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.zaoqibu.zaoqibukindergartenmusic.domain.Playlist;
 import com.zaoqibu.zaoqibukindergartenmusic.domain.Sound;
@@ -14,11 +16,14 @@ import java.io.IOException;
  * Created by vwarship on 2014/10/23.
  */
 public class Player {
+    private final static String TAG = "MediaPlayer";
+
+    private MediaPlayer mediaPlayer;
+
     private Context context;
     private Playlist playlist;
 
-    private MediaPlayer mediaPlayer;
-    private final static String TAG = "MediaPlayer";
+    private int currentPosition = 0;
 
     public Player() {
         initMediaPlayer();
@@ -26,16 +31,32 @@ public class Player {
 
     private void initMediaPlayer() {
         mediaPlayer = new MediaPlayer();
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                if (playlist != null)
-                    play(playlist.next());
-            }
-        });
     }
 
-    public void play(Sound sound) {
+    public void setOnCompletionListenerWithMediaPlayer(MediaPlayer.OnCompletionListener listener) {
+        mediaPlayer.setOnCompletionListener(listener);
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    public void setPlaylist(Playlist playlist) {
+        this.playlist = playlist;
+    }
+
+    public void play(int position) {
+        if (position<0 || position>=playlist.count())
+            return;
+
+        currentPosition = position;
+        Sound sound = playlist.getSound(currentPosition);
+
+        if (sound != null)
+            play(sound);
+    }
+
+    private void play(Sound sound) {
         mediaPlayer.reset();
 
         if (sound == null) {
@@ -43,7 +64,7 @@ public class Player {
         }
 
         try {
-//            AssetFileDescriptor afd = context.getResources().openRawResourceFd(sound.getFilenameResId());
+            //AssetFileDescriptor afd = context.getResources().openRawResourceFd(sound.getFilenameResId());
             AssetFileDescriptor afd = context.getAssets().openFd(sound.getPath());
             mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
             afd.close();
@@ -75,24 +96,28 @@ public class Player {
         return mediaPlayer.isPlaying();
     }
 
-    public void setContext(Context context) {
-        this.context = context;
+    public int previousPlayIndex() {
+        int previousIndex = currentPosition - 1;
+        if (previousIndex < 0)
+            previousIndex = playlist.count() - 1;
+
+        return previousIndex;
     }
 
-    public void setPlaylist(Playlist playlist) {
-        this.playlist = playlist;
+    public int nextPlayIndex() {
+        int nextIndex = currentPosition + 1;
+        if (nextIndex >= playlist.count())
+            nextIndex = 0;
+
+        return nextIndex;
     }
 
-    private volatile static Player player;
-    public static Player getInstance() {
-        if (player == null) {
-            synchronized (Player.class) {
-                if (player == null)
-                    player = new Player();
-            }
-        }
+    public Playlist getPlaylist() {
+        return playlist;
+    }
 
-        return player;
+    public int getCurrentPosition() {
+        return currentPosition;
     }
 
 }

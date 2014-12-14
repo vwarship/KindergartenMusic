@@ -16,16 +16,16 @@ import com.zaoqibu.zaoqibukindergartenmusic.domain.Sound;
  */
 public class PlaylistAdapter extends BaseAdapter {
     private Context context;
-    private Playlist playlist;
+    private Player player;
 
-    public PlaylistAdapter(Context context, Playlist playlist) {
+    public PlaylistAdapter(Context context, Player player) {
         this.context = context;
-        this.playlist = playlist;
+        this.player = player;
     }
 
     @Override
     public int getCount() {
-        return playlist.count();
+        return player.getPlaylist().count();
     }
 
     @Override
@@ -50,16 +50,16 @@ public class PlaylistAdapter extends BaseAdapter {
             view = convertView;
         }
 
-        Sound sound = playlist.getSound(position);
+        Sound sound = player.getPlaylist().getSound(position);
+
         TextView name = (TextView)view.findViewById(R.id.playlistItemName);
         name.setText(sound.getName());
 
-        ImageView currentPlaying = (ImageView)view.findViewById(R.id.currentPlaying);
-        if (position == playlist.getCurrentPlayIndex()) {
-            currentPlaying.setBackgroundColor(context.getResources().getColor(R.color.current_playing_on));
+        if (position == player.getCurrentPosition()) {
+            view.setBackgroundColor(context.getResources().getColor(R.color.current_playing_on));
         }
         else {
-            currentPlaying.setBackgroundColor(context.getResources().getColor(R.color.current_playing_off));
+            view.setBackgroundColor(context.getResources().getColor(R.color.current_playing_off));
         }
 
         return view;

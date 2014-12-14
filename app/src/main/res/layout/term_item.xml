@@ -10,10 +10,18 @@
         android:textAppearance="?android:attr/textAppearanceLargeInverse"
         android:text="Term Name"
         android:id="@+id/tv_term_name"
-        android:layout_marginLeft="@dimen/term_item_margin"
-        android:layout_marginRight="@dimen/term_item_margin"
-        android:layout_marginBottom="@dimen/term_item_margin"
+        android:layout_marginLeft="@dimen/term_item_text_margin"
+        android:layout_marginRight="@dimen/term_item_text_margin"
+        android:layout_marginBottom="@dimen/term_item_text_margin"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_term_background_image"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="12dp"/>
 </RelativeLayout>

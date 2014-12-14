@@ -16,30 +16,12 @@ import com.zaoqibu.zaoqibukindergartenmusic.util.TermFactory;
 
 
 public class MainActivity extends Activity {
-/*    private Player player;
-    private Playlist playlist;
-    private ListView playlistView;
-
-    private ImageButton playButton;
-    private ImageButton playPreviousButton;
-    private ImageButton playNextButton;
-*/
-
     private static final String TAG = "MainActivity";
 
     private Terms terms = new Terms();
 
     public MainActivity() {
         Log.i(TAG, "MainActivity");
-
-        terms.addTerm(TermFactory.createTermWithNursery1());
-        terms.addTerm(TermFactory.createTermWithNursery2());
-        terms.addTerm(TermFactory.createTermWithLowerKindergarten1());
-        terms.addTerm(TermFactory.createTermWithLowerKindergarten2());
-        terms.addTerm(TermFactory.createTermWithUpperKindergarten1());
-        terms.addTerm(TermFactory.createTermWithUpperKindergarten2());
-
-        //playlist = Playlist.create();
     }
 
     @Override
@@ -48,6 +30,14 @@ public class MainActivity extends Activity {
         Log.i(TAG, "onCreate");
 
         setContentView(R.layout.activity_main);
+
+        TermFactory termFactory = new TermFactory(this);
+        terms.addTerm(termFactory.createTermWithNursery1());
+        terms.addTerm(termFactory.createTermWithNursery2());
+        terms.addTerm(termFactory.createTermWithLowerKindergarten1());
+        terms.addTerm(termFactory.createTermWithLowerKindergarten2());
+        terms.addTerm(termFactory.createTermWithUpperKindergarten1());
+        terms.addTerm(termFactory.createTermWithUpperKindergarten2());
 
         final int termItemWidth = GridViewUtil.calcItemWidth(this);
 
@@ -62,140 +52,12 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
-
-        /*
-        initPlaylistView();
-        initPlayButton();
-        initPlayPrevious();
-        initPlayNext();
-
-        player = new Player();//Player.getInstance();
-        player.setContext(this);
-        player.setPlaylist(playlist);
-
-        //playSoundByPosition(0);
-        */
     }
 
-/*
-    private void initPlaylistView() {
-        playlistView = (ListView)findViewById(R.id.playlistView);
-        playlistView.setAdapter(new PlaylistAdapter(this, playlist));
-
-        playlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                playSoundByPosition(position);
-            }
-        });
-    }
-
-    private void setCurrentPlaying(View view) {
-        offAllCurrentPlayingWithPlaylistView();
-        onCurrentPlayingWithPlaylistView(view);
-    }
-
-    private void offAllCurrentPlayingWithPlaylistView() {
-        int count = playlistView.getChildCount();
-        for (int i=0; i<count; ++i) {
-            View view = playlistView.getChildAt(i);
-            ImageView currentPlaying = (ImageView)view.findViewById(R.id.currentPlaying);
-            currentPlaying.setBackgroundColor(getResources().getColor(R.color.current_playing_off));
-        }
-    }
-
-    private void onCurrentPlayingWithPlaylistView(View view) {
-        if (view != null) {
-            ImageView currentPlaying = (ImageView) view.findViewById(R.id.currentPlaying);
-            currentPlaying.setBackgroundColor(getResources().getColor(R.color.current_playing_on));
-        }
-    }
-
-    private void playSoundByPosition(int position) {
-        View view = getViewByPosition(playlistView, position);
-        setCurrentPlaying(view);
-
-        player.play(playlist.getSound(position));
-        playlist.setCurrentPlayIndex(position);
-
-        setPlayImage();
-    }
-
-    private View getViewByPosition(ListView listView, int pos) {
-        final int firstListItemPosition = listView.getFirstVisiblePosition();
-        final int lastListItemPosition = firstListItemPosition + listView.getChildCount() - 1;
-
-        if (pos < firstListItemPosition || pos > lastListItemPosition ) {
-            return listView.getAdapter().getView(pos, null, listView);
-        } else {
-            final int childIndex = pos - firstListItemPosition;
-            return listView.getChildAt(childIndex);
-        }
-    }
-
-    private void initPlayButton() {
-        playButton = (ImageButton) findViewById(R.id.playlistItemPlay);
-        playButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (player.isPlaying()) {
-                    player.pause();
-                }
-                else {
-                    player.play();
-                }
-
-                setPlayImage();
-            }
-        });
-    }
-
-    private void initPlayPrevious() {
-        playPreviousButton = (ImageButton) findViewById(R.id.playlistItemPrevious);
-        playPreviousButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                playSoundByPosition(previousPlayIndex());
-            }
-        });
-    }
-
-    private int previousPlayIndex() {
-        int previousIndex = playlist.getCurrentPlayIndex() - 1;
-        if (previousIndex < 0)
-            previousIndex = playlist.count() - 1;
-
-        return previousIndex;
-    }
-
-    private void initPlayNext() {
-        playNextButton = (ImageButton) findViewById(R.id.playlistItemNext);
-        playNextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                playSoundByPosition(nextPlayIndex());
-            }
-        });
-    }
-
-    private int nextPlayIndex() {
-        int nextIndex = playlist.getCurrentPlayIndex() + 1;
-        if (nextIndex >= playlist.count())
-            nextIndex = 0;
-
-        return nextIndex;
-    }
-
-    private void setPlayImage() {
-        playButton.setImageResource(player.isPlaying() ? R.drawable.ic_action_pause : R.drawable.ic_action_play);
-    }
-*/
     @Override
     protected void onDestroy() {
         super.onDestroy();
         Log.i(TAG, "onDestroy");
-
-        //player.close();
     }
 
     @Override

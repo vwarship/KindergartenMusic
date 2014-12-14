@@ -1,6 +1,8 @@
 package com.zaoqibu.zaoqibukindergartenmusic;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +17,7 @@ import com.zaoqibu.zaoqibukindergartenmusic.domain.Terms;
 
 
 public class TermActivity extends Activity {
+    private static final String SHARED_PREFERENCES_NAME = "com.zaoqibu.zaoqibukindergartenmusic_preferences";
     public static final String ARG_TERMS = "terms";
     public static final String ARG_POSITION = "position";
 
@@ -37,25 +40,34 @@ public class TermActivity extends Activity {
         terms = (Terms)getIntent().getExtras().get(ARG_TERMS);
         position = getIntent().getExtras().getInt(ARG_POSITION);
 
-        getActionBar().setTitle(terms.getTerm(position).getName());
+        String termName = terms.getTerm(position).getName();
+        getActionBar().setTitle(termName);
 
         playlist = terms.getTerm(position).getPlaylist();
+
+        player = new Player();
+        player.setContext(this);
+        player.setPlaylist(playlist);
 
         initPlaylistView();
         initPlayButton();
         initPlayPrevious();
         initPlayNext();
 
-        player = new Player();//Player.getInstance();
-        player.setContext(this);
-        player.setPlaylist(playlist);
+        player.setOnCompletionListenerWithMediaPlayer(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                if (playlist != null)
+                    playSoundByPosition(player.nextPlayIndex());
+            }
+        });
 
-        playSoundByPosition(0);
+        playSoundByPosition(getCurrentPositionWithPlaylist(termName));
     }
 
     private void initPlaylistView() {
         playlistView = (ListView)findViewById(R.id.playlistView);
-        playlistView.setAdapter(new PlaylistAdapter(this, playlist));
+        playlistView.setAdapter(new PlaylistAdapter(this, player));
 
         playlistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -74,15 +86,13 @@ public class TermActivity extends Activity {
         int count = playlistView.getChildCount();
         for (int i=0; i<count; ++i) {
             View view = playlistView.getChildAt(i);
-            ImageView currentPlaying = (ImageView)view.findViewById(R.id.currentPlaying);
-            currentPlaying.setBackgroundColor(getResources().getColor(R.color.current_playing_off));
+            view.setBackgroundColor(getResources().getColor(R.color.current_playing_off));
         }
     }
 
     private void onCurrentPlayingWithPlaylistView(View view) {
         if (view != null) {
-            ImageView currentPlaying = (ImageView) view.findViewById(R.id.currentPlaying);
-            currentPlaying.setBackgroundColor(getResources().getColor(R.color.current_playing_on));
+            view.setBackgroundColor(getResources().getColor(R.color.current_playing_on));
         }
     }
 
@@ -90,8 +100,7 @@ public class TermActivity extends Activity {
         View view = getViewByPosition(playlistView, position);
         setCurrentPlaying(view);
 
-        player.play(playlist.getSound(position));
-        playlist.setCurrentPlayIndex(position);
+        player.play(position);
 
         setPlayImage();
     }
@@ -130,17 +139,9 @@ public class TermActivity extends Activity {
         playPreviousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playSoundByPosition(previousPlayIndex());
+                playSoundByPosition(player.previousPlayIndex());
             }
         });
-    }
-
-    private int previousPlayIndex() {
-        int previousIndex = playlist.getCurrentPlayIndex() - 1;
-        if (previousIndex < 0)
-            previousIndex = playlist.count() - 1;
-
-        return previousIndex;
     }
 
     private void initPlayNext() {
@@ -148,17 +149,14 @@ public class TermActivity extends Activity {
         playNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playSoundByPosition(nextPlayIndex());
+                playSoundByPosition(player.nextPlayIndex());
             }
         });
     }
 
-    private int nextPlayIndex() {
-        int nextIndex = playlist.getCurrentPlayIndex() + 1;
-        if (nextIndex >= playlist.count())
-            nextIndex = 0;
-
-        return nextIndex;
+    private int getCurrentPositionWithPlaylist(String playlistName) {
+        SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        return prefs.getInt(playlistName, 0);
     }
 
     private void setPlayImage() {
@@ -169,7 +167,16 @@ public class TermActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
 
+        setCurrentPositionWithPlaylist(terms.getTerm(position).getName(), player.getCurrentPosition());
         player.close();
+    }
+
+    private void setCurrentPositionWithPlaylist(String playlistName, int currentPosition) {
+        SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+
+        prefsEditor.putInt(playlistName, currentPosition);
+        prefsEditor.commit();
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zaoqibu.zaoqibukindergartenmusic.domain.Term;
@@ -58,8 +59,8 @@ public class TermAdapter extends BaseAdapter {
 
        Term term = terms.getTerm(position);
 
-        //ImageView imageView = (ImageView)item.findViewById(R.id.itemImage);
-        //imageView.setBackgroundColor(Color.parseColor(color.getHexColorCode()));
+        ImageView imageView = (ImageView)item.findViewById(R.id.iv_term_background_image);
+        imageView.setBackgroundResource(term.getImageResId());
 
         item.setBackgroundColor(context.getResources().getColor(term.getBackgroundColorResId()));
         TextView textView = (TextView)item.findViewById(R.id.tv_term_name);

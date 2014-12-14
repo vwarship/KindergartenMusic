@@ -1,8 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">山东省幼儿园课程指导 音乐</string>
-    <string name="hello_world">您好！</string>
+    <string name="app_name">早起步幼儿园 音乐</string>
     <string name="action_settings">设置</string>
 
+    <string-array name="Nursery34_1">
+        <item>两只小小鸭</item>
+        <item>鱼儿好朋友</item>
+        <item>打电话</item>
+        <item>找朋友</item>
+        <item>开火车</item>
+        <item>我爱我的幼儿园</item>
+        <item>会跳舞的跳跳糖</item>
+        <item>会跳舞的跳跳糖 OK伴奏</item>
+        <item>香甜的水果在哪里</item>
+        <item>拔萝卜</item>
+        <item>小小厨师</item>
+        <item>毛毛虫挠痒痒</item>
+        <item>抱一抱</item>
+        <item>好宝宝</item>
+        <item>好宝宝 OK伴奏</item>
+        <item>小手爬</item>
+        <item>小手拍拍</item>
+        <item>头发、肩膀、膝盖、脚</item>
+        <item>一二三</item>
+        <item>奇妙的声音</item>
+        <item>小小交通警</item>
+        <item>这是什么车</item>
+        <item>这是什么车 OK伴奏</item>
+        <item>汽车开来了</item>
+        <item>小老鼠上灯台</item>
+        <item>小老鼠上灯台 OK伴奏</item>
+        <item>伸伸转</item>
+        <item>两只小鸟</item>
+        <item>走路</item>
+        <item>小花狗</item>
+        <item>我爱我的小动物</item>
+        <item>找小猫</item>
+        <item>捉小鱼</item>
+        <item>小雪花</item>
+        <item>我给太阳唱支歌</item>
+        <item>宝宝不怕冷</item>
+        <item>小雪花飘呀飘</item>
+        <item>好娃娃</item>
+        <item>好娃娃 OK伴奏</item>
+        <item>拉个圆圈赶走</item>
+        <item>亲亲我</item>
+        <item>小小手</item>
+        <item>小小手 OK伴奏</item>
+        <item>放鞭炮</item>
+        <item>包饺子</item>
+        <item>新年到</item>
+        <item>新年好</item>
+        <item>咚咚锵</item>
+        <item>锣和鼓</item>
+        <item>锣和鼓 OK伴奏</item>
+        <item>秧歌步</item>
+    </string-array>
+
+    <string-array name="Nursery34_2">
+        <item>我家有几口</item>
+        <item>睡吧，布娃娃</item>
+        <item>五指歌</item>
+        <item>公鸡操</item>
+        <item>我爱洗澡</item>
+        <item>袋鼠</item>
+        <item>小枕头</item>
+        <item>亲亲热热在一起</item>
+        <item>大猫小猫</item>
+        <item>变大变小</item>
+        <item>彩色世界真奇妙</item>
+        <item>颜色朋友在哪里</item>
+        <item>哈哈笑</item>
+        <item>朋友你好</item>
+        <item>小星星</item>
+        <item>摞拳头</item>
+        <item>快跳起来</item>
+        <item>看样学样</item>
+        <item>猫捉老鼠</item>
+        <item>小胖鸭子捉迷藏</item>
+        <item>小胖鸭子捉迷藏2</item>
+        <item>洗衣服</item>
+        <item>美丽的泥娃娃</item>
+        <item>两只小象</item>
+        <item>夏天到</item>
+        <item>大雨小雨</item>
+        <item>噜啦啦洗澡了</item>
+        <item>萤火虫</item>
+    </string-array>
+
+    <string-array name="LowerKindergarten45_1">
+        <item>太阳小鸟夸奖我</item>
+        <item>好朋友</item>
+        <item>幼儿园里好事多</item>
+        <item>让爱住我家</item>
+        <item>过家家</item>
+        <item>爷爷为我打月饼</item>
+        <item>袋鼠妈妈</item>
+        <item>好娃娃</item>
+        <item>我爱祖国</item>
+        <item>我们的祖国是花园</item>
+        <item>祖国，祖国，我们爱你</item>
+        <item>落叶</item>
+        <item>小树叶</item>
+        <item>火车开来了</item>
+        <item>火车开来了 OK伴奏</item>
+        <item>摘果子</item>
+        <item>秋天多么美</item>
+        <item>秋天多么美 OK伴奏</item>
+        <item>小松鼠找松果</item>
+        <item>健康歌</item>
+        <item>健康歌 OK伴奏</item>
+        <item>蚂蚁搬豆</item>
+        <item>蚂蚁搬豆 OK伴奏</item>
+        <item>昆虫音乐会</item>
+        <item>蓝精灵</item>
+        <item>小白船</item>
+        <item>大吊车</item>
+        <item>洒水车</item>
+        <item>一分钱</item>
+        <item>交通警</item>
+        <item>颠倒歌</item>
+        <item>谁的尾巴最好看</item>
+        <item>谁的尾巴最好看 OK伴奏</item>
+        <item>小动物怎样过冬</item>
+        <item>小老鼠和泡泡糖</item>
+        <item>小鸟落落</item>
+        <item>小蜘蛛</item>
+        <item>青蛙找家</item>
+        <item>盖房子</item>
+        <item>小猪睡觉</item>
+        <item>萤火虫</item>
+        <item>雪花和雨滴</item>
+        <item>堆雪人</item>
+        <item>咙咚锵</item>
+        <item>恭喜恭喜</item>
+        <item>卷炮仗</item>
+    </string-array>
+
+    <string-array name="LowerKindergarten45_2">
+        <item>小小粉刷匠</item>
+        <item>小小粉刷匠（伴奏）</item>
+        <item>不再麻烦好妈妈</item>
+        <item>不再麻烦好妈妈（伴奏）</item>
+        <item>口哨与小狗</item>
+        <item>朋友舞</item>
+        <item>哈罗，哈罗</item>
+        <item>找朋友</item>
+        <item>天鹅</item>
+        <item>四小天鹅舞曲</item>
+        <item>喂小鸟</item>
+        <item>小飞机</item>
+        <item>小飞机上蓝天</item>
+        <item>金孔雀轻轻跳</item>
+        <item>小星星</item>
+        <item>布谷鸟叫声录音</item>
+        <item>报春</item>
+        <item>春天在哪里</item>
+        <item>小小一粒米</item>
+        <item>春雨沙沙</item>
+        <item>窗开开，门开开</item>
+        <item>种葵花</item>
+        <item>大自然的声音</item>
+        <item>我是快乐的小蜗牛</item>
+        <item>种树歌</item>
+        <item>加油干</item>
+        <item>在农场里</item>
+        <item>气球跳舞</item>
+        <item>影子</item>
+        <item>郊游</item>
+        <item>蝈蝈和蛐蛐</item>
+        <item>花哈蟆</item>
+        <item>说唱济南</item>
+        <item>八仙过海</item>
+        <item>沂蒙山小调</item>
+        <item>扭秧歌</item>
+        <item>六一儿童节</item>
+        <item>夏天的雷雨</item>
+        <item>雷雨音效</item>
+        <item>小蚂蚁避雨</item>
+        <item>下雨啦</item>
+        <item>游泳</item>
+        <item>毛毛虫</item>
+        <item>数蛤蟆</item>
+    </string-array>
+
+    <string-array name="UpperKindergarten56_1">
+        <item>拉拉勾</item>
+        <item>我爱你</item>
+        <item>泼水歌</item>
+        <item>司马光砸缸</item>
+        <item>戏说脸谱（京歌）</item>
+        <item>同唱一首歌</item>
+        <item>男儿当自强</item>
+        <item>国旗、国旗红红的哩</item>
+        <item>小海军</item>
+        <item>喜洋洋</item>
+        <item>送我一支玫瑰花</item>
+        <item>龟兔赛跑（京歌）</item>
+        <item>秋天多么美</item>
+        <item>苹果丰收</item>
+        <item>快乐的小鼹鼠</item>
+        <item>化蝶</item>
+        <item>猪八戒吃西瓜</item>
+        <item>吃西瓜</item>
+        <item>百鸟朝凤</item>
+        <item>猴哥</item>
+        <item>猴子看，猴子做</item>
+        <item>一个师傅仨徒弟</item>
+        <item>小老鼠打电话</item>
+        <item>邮递马车</item>
+        <item>打字机</item>
+        <item>雪花飞</item>
+        <item>铃儿响叮当</item>
+        <item>快乐舞会</item>
+        <item>红绸舞</item>
+    </string-array>
+
+    <string-array name="UpperKindergarten56_2">
+        <item>闹花灯</item>
+        <item>游子吟</item>
+        <item>风儿找妈妈</item>
+        <item>田纳西摇摆舞</item>
+        <item>唱唱我的名字（歌曲）</item>
+        <item>小小男子汉（歌曲）</item>
+        <item>动物狂欢节终曲（乐曲）</item>
+        <item>不怕输的小火车</item>
+        <item>黄梅戏《女驸马》选段</item>
+        <item>柳树姑娘</item>
+        <item>大自然的声音</item>
+        <item>三只猴子</item>
+        <item>雷神</item>
+        <item>土耳其进行曲</item>
+        <item>快乐的皮影人</item>
+        <item>加速度圆舞曲</item>
+        <item>巡逻兵进行曲</item>
+        <item>勤快人和懒惰人</item>
+        <item>歌声与微笑</item>
+        <item>Do-Re-Mi</item>
+        <item>孤独的牧羊人</item>
+        <item>口哨与小狗</item>
+        <item>森林狂想曲</item>
+        <item>G大调小步舞曲</item>
+        <item>碰碰车</item>
+        <item>铅笔盒进行曲</item>
+        <item>快上一年级</item>
+        <item>友谊地久天长</item>
+    </string-array>
 </resources>

@@ -4,12 +4,6 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="@dimen/current_playing_height">
 
-    <ImageView
-        android:layout_width="@dimen/current_playing_width"
-        android:layout_height="match_parent"
-        android:id="@+id/currentPlaying"
-        android:background="@color/current_playing_off" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

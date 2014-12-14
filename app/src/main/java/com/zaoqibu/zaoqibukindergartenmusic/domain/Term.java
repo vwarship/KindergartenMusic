@@ -8,12 +8,14 @@ import java.io.Serializable;
 public class Term implements Serializable {
     private String name;
     private int backgroundColorResId;
+    private int imageResId;
 
     private Playlist playlist;
 
-    public Term(String name, int backgroundColorResId) {
+    public Term(String name, int backgroundColorResId, int imageResId) {
         this.name = name;
         this.backgroundColorResId = backgroundColorResId;
+        this.imageResId = imageResId;
     }
 
     public String getName() {
@@ -30,5 +32,9 @@ public class Term implements Serializable {
 
     public int getBackgroundColorResId() {
         return backgroundColorResId;
+    }
+
+    public int getImageResId() {
+        return imageResId;
     }
 }
