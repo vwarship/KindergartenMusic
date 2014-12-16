@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,9 +12,12 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.zaoqibu.zaoqibukindergartenmusic.domain.Playlist;
 import com.zaoqibu.zaoqibukindergartenmusic.domain.Terms;
+
+import java.util.Calendar;
 
 
 public class TermActivity extends Activity {
@@ -34,6 +38,8 @@ public class TermActivity extends Activity {
     private ImageButton playSequenceButton;
 
     private boolean isSequencePlay = true;
+
+    private long bedtimePlayBeginTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +68,11 @@ public class TermActivity extends Activity {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 if (playlist != null) {
+                    if (bedtimePlayBeginTime > 0 && (Calendar.getInstance().getTimeInMillis() - bedtimePlayBeginTime) / 1000 > 30*60) {
+                        System.exit(0);
+                        return;
+                    }
+
                     if (isSequencePlay)
                         playSoundByPosition(player.nextPlayIndex());
                     else
@@ -209,6 +220,8 @@ public class TermActivity extends Activity {
         return true;
     }
 
+    private final static String TAG = "TermActivity";
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -216,7 +229,8 @@ public class TermActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_bedtime_paly) {
-
+            bedtimePlayBeginTime = Calendar.getInstance().getTimeInMillis();
+            Toast.makeText(this, "睡前播放 30 分钟。", Toast.LENGTH_LONG);
             return true;
         }
         return super.onOptionsItemSelected(item);
