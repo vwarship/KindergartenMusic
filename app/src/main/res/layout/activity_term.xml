@@ -47,6 +47,13 @@
             android:id="@+id/playlistItemNext"
             android:src="@drawable/ic_action_next"
             android:scaleType="fitCenter" />
+
+        <ImageButton
+            android:layout_width="@dimen/image_button_size"
+            android:layout_height="@dimen/image_button_size"
+            android:id="@+id/playlistItemPlaySequence"
+            android:src="@drawable/ic_action_sequence"
+            android:scaleType="fitCenter" />
     </LinearLayout>
 
 </RelativeLayout>

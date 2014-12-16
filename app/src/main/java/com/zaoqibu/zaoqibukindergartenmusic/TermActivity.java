@@ -31,6 +31,9 @@ public class TermActivity extends Activity {
     private ImageButton playButton;
     private ImageButton playPreviousButton;
     private ImageButton playNextButton;
+    private ImageButton playSequenceButton;
+
+    private boolean isSequencePlay = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +56,17 @@ public class TermActivity extends Activity {
         initPlayButton();
         initPlayPrevious();
         initPlayNext();
+        initPlaySequence();
 
         player.setOnCompletionListenerWithMediaPlayer(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
-                if (playlist != null)
-                    playSoundByPosition(player.nextPlayIndex());
+                if (playlist != null) {
+                    if (isSequencePlay)
+                        playSoundByPosition(player.nextPlayIndex());
+                    else
+                        playSoundByPosition(player.getCurrentPosition());
+                }
             }
         });
 
@@ -154,6 +162,17 @@ public class TermActivity extends Activity {
         });
     }
 
+    private void initPlaySequence() {
+        playSequenceButton = (ImageButton) findViewById(R.id.playlistItemPlaySequence);
+        playSequenceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setPlaySequenceImage();
+                isSequencePlay = !isSequencePlay;
+            }
+        });
+    }
+
     private int getCurrentPositionWithPlaylist(String playlistName) {
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
         return prefs.getInt(playlistName, 0);
@@ -161,6 +180,10 @@ public class TermActivity extends Activity {
 
     private void setPlayImage() {
         playButton.setImageResource(player.isPlaying() ? R.drawable.ic_action_pause : R.drawable.ic_action_play);
+    }
+
+    private void setPlaySequenceImage() {
+        playSequenceButton.setImageResource(isSequencePlay ? R.drawable.ic_action_repeat : R.drawable.ic_action_sequence);
     }
 
     @Override
