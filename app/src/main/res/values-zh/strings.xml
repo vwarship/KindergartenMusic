@@ -3,6 +3,9 @@
 
     <string name="app_name">早起步幼儿园 音乐</string>
     <string name="action_settings">设置</string>
+    <string name="action_overflow">更多</string>
+    <string name="action_bedtime_play">睡前播放</string>
+    <string name="action_about">关于</string>
 
     <string-array name="Nursery34_1">
         <item>两只小小鸭</item>

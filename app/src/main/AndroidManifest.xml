@@ -18,12 +18,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PlaylistItemDetailActivity"
-            android:label="@string/title_activity_playlist_item_detail" >
-        </activity>
-        <activity
             android:name=".TermActivity"
-            android:label="@string/title_activity_term" >
+            android:label="@string/title_activity_term"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
