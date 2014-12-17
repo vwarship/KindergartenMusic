@@ -40,6 +40,7 @@ public class TermActivity extends Activity {
     private boolean isSequencePlay = true;
 
     private long bedtimePlayBeginTime = 0;
+    private static final int bedtimePlayTimeMinute = 30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +69,8 @@ public class TermActivity extends Activity {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 if (playlist != null) {
-                    if (bedtimePlayBeginTime > 0 && (Calendar.getInstance().getTimeInMillis() - bedtimePlayBeginTime) / 1000 > 30*60) {
-                        System.exit(0);
+                    if (bedtimePlayBeginTime > 0 && (Calendar.getInstance().getTimeInMillis() - bedtimePlayBeginTime) > bedtimePlayTimeMinute*60*1000) {
+                        player.pause();
                         return;
                     }
 
@@ -229,8 +230,18 @@ public class TermActivity extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_bedtime_paly) {
-            bedtimePlayBeginTime = Calendar.getInstance().getTimeInMillis();
-            Toast.makeText(this, "睡前播放 30 分钟。", Toast.LENGTH_LONG);
+            String toastText;
+
+            if (bedtimePlayBeginTime == 0) {
+                bedtimePlayBeginTime = Calendar.getInstance().getTimeInMillis();
+                toastText = String.format("睡前播放 %d 分钟", bedtimePlayTimeMinute);
+            }
+            else {
+                bedtimePlayBeginTime = 0;
+                toastText = "取消睡前播放设置";
+            }
+            Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
+
             return true;
         }
         return super.onOptionsItemSelected(item);
