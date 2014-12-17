@@ -71,6 +71,7 @@ public class TermActivity extends Activity {
                 if (playlist != null) {
                     if (bedtimePlayBeginTime > 0 && (Calendar.getInstance().getTimeInMillis() - bedtimePlayBeginTime) > bedtimePlayTimeMinute*60*1000) {
                         player.pause();
+                        bedtimePlayBeginTime = 0;
                         return;
                     }
 
