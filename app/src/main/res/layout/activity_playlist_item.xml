@@ -4,6 +4,13 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="@dimen/current_playing_height">
 
+    <ImageView
+        android:layout_width="52dp"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        android:id="@+id/playlistItemIcon"
+        android:src="@drawable/sound_default_icon" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -11,6 +18,5 @@
         android:id="@+id/playlistItemName"
         android:layout_gravity="center_vertical"
         android:text="Sound Name"
-        android:textSize="@dimen/playlist_item_name_text_size"
-        android:layout_marginLeft="8dp"/>
+        android:textSize="@dimen/playlist_item_name_text_size"/>
 </LinearLayout>

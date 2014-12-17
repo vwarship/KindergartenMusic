@@ -10,5 +10,5 @@
     <dimen name="current_playing_width">8dp</dimen>
     <dimen name="current_playing_height">60dp</dimen>
 
-    <dimen name="playlist_item_name_text_size">28sp</dimen>
+    <dimen name="playlist_item_name_text_size">24sp</dimen>
 </resources>
