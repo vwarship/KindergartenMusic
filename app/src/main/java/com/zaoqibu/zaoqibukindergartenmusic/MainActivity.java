@@ -39,10 +39,9 @@ public class MainActivity extends Activity {
         terms.addTerm(termFactory.createTermWithUpperKindergarten1());
         terms.addTerm(termFactory.createTermWithUpperKindergarten2());
 
-        final int termItemWidth = GridViewUtil.calcItemWidth(this);
-
         GridView gvTerms = (GridView)findViewById(R.id.gv_terms);
-        gvTerms.setAdapter(new TermAdapter(this, terms, termItemWidth));
+        gvTerms.setAdapter(new TermAdapter(this, terms,
+                GridViewUtil.calcItemWidth(this)));
         gvTerms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

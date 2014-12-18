@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -35,7 +33,6 @@ public class TermActivity extends Activity {
     private ImageButton playButton;
     private ImageButton playPreviousButton;
     private ImageButton playNextButton;
-    private ImageButton playSequenceButton;
 
     private boolean isSequencePlay = true;
 
@@ -63,7 +60,6 @@ public class TermActivity extends Activity {
         initPlayButton();
         initPlayPrevious();
         initPlayNext();
-        initPlaySequence();
 
         player.setOnCompletionListenerWithMediaPlayer(new MediaPlayer.OnCompletionListener() {
             @Override
@@ -175,17 +171,6 @@ public class TermActivity extends Activity {
         });
     }
 
-    private void initPlaySequence() {
-        playSequenceButton = (ImageButton) findViewById(R.id.playlistItemPlaySequence);
-        playSequenceButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setPlaySequenceImage();
-                isSequencePlay = !isSequencePlay;
-            }
-        });
-    }
-
     private int getCurrentPositionWithPlaylist(String playlistName) {
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
         return prefs.getInt(playlistName, 0);
@@ -193,10 +178,6 @@ public class TermActivity extends Activity {
 
     private void setPlayImage() {
         playButton.setImageResource(player.isPlaying() ? R.drawable.ic_action_pause : R.drawable.ic_action_play);
-    }
-
-    private void setPlaySequenceImage() {
-        playSequenceButton.setImageResource(isSequencePlay ? R.drawable.ic_action_repeat : R.drawable.ic_action_sequence);
     }
 
     @Override
@@ -230,7 +211,12 @@ public class TermActivity extends Activity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_bedtime_paly) {
+
+        if (id == R.id.action_repeat) {
+            item.setIcon(isSequencePlay ? R.drawable.ic_action_repeat_one : R.drawable.ic_action_repeat);
+            isSequencePlay = !isSequencePlay;
+        }
+        else if (id == R.id.action_bedtime_paly) {
             String toastText;
 
             if (bedtimePlayBeginTime == 0) {

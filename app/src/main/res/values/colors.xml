@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="nursery_term_background_color">#9F00A7</color>
-    <color name="lower_kindergarten_term_background_color">#DA532C</color>
-    <color name="upper_kindergarten_term_background_color">#00A300</color>
+    <color name="nursery_term_background_color">#46D0D6</color> <!--#9F00A7-->
+    <color name="lower_kindergarten_term_background_color">#F57945</color> <!--#DA532C-->
+    <color name="upper_kindergarten_term_background_color">#8FC31F</color> <!--#00A300-->
 
     <color name="playlist_background">#FFFFF1E0</color>
     <color name="play_control_background">#FFFAC96C</color>
 
-    <color name="current_playing_on">@android:color/holo_green_dark</color>
-    <color name="current_playing_off">#FFFFF1E0</color>
+    <color name="current_playing_on">#FFAAD000</color> <!--@android:color/holo_green_dark-->
+    <color name="current_playing_off">#FFFFFFFF</color> <!--#FFFFF1E0-->
 </resources>

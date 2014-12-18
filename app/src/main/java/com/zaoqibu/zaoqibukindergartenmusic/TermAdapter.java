@@ -57,7 +57,7 @@ public class TermAdapter extends BaseAdapter {
             item = convertView;
         }
 
-       Term term = terms.getTerm(position);
+        Term term = terms.getTerm(position);
 
         ImageView imageView = (ImageView)item.findViewById(R.id.iv_term_background_image);
         imageView.setBackgroundResource(term.getImageResId());
