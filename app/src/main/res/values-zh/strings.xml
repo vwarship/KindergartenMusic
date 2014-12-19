@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">早起步幼儿园 音乐</string>
+    <string name="app_name">早起步幼儿园音乐</string>
     <string name="action_settings">设置</string>
     <string name="action_overflow">更多</string>
     <string name="action_repeat">循环播放</string>

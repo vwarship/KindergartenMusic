@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="playlist_background">#FFFFF1E0</color>
-    <color name="play_control_background">#FFFAC96C</color>
-
-    <color name="current_playing_on">#FFAAD000</color> <!--@android:color/holo_green_dark-->
+    <color name="current_playing_on">#FF66C010</color> <!--@android:color/holo_green_darkFFAAD000-->
     <color name="current_playing_off">#FFFFFFFF</color> <!--#FFFFF1E0-->
 </resources>

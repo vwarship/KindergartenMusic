@@ -8,7 +8,7 @@
     <dimen name="term_item_text_margin">8dp</dimen>
 
     <dimen name="current_playing_width">8dp</dimen>
-    <dimen name="current_playing_height">72dp</dimen>
+    <dimen name="current_playing_height">88dp</dimen>
 
     <dimen name="image_button_size">72dp</dimen>
 
