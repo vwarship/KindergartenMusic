@@ -59,10 +59,11 @@ public class TermAdapter extends BaseAdapter {
 
         Term term = terms.getTerm(position);
 
+        item.setBackgroundResource(term.getBackgroundColorResId());
+
         ImageView imageView = (ImageView)item.findViewById(R.id.iv_term_background_image);
         imageView.setBackgroundResource(term.getImageResId());
 
-        item.setBackgroundColor(context.getResources().getColor(term.getBackgroundColorResId()));
         TextView textView = (TextView)item.findViewById(R.id.tv_term_name);
         textView.setText(term.getName());
 
