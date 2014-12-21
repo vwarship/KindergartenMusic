@@ -7,18 +7,24 @@ import java.io.Serializable;
  */
 public class Sound implements Serializable {
     private String name;
-    private String path;
+    private String soundPath;
+    private String iconPath;
 
-    public Sound(String name, String path) {
+    public Sound(String name, String soundPath, String iconPath) {
         this.name = name;
-        this.path = path;
+        this.soundPath = soundPath;
+        this.iconPath = iconPath;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getPath() {
-        return path;
+    public String getSoundPath() {
+        return soundPath;
+    }
+
+    public String getIconPath() {
+        return iconPath;
     }
 }

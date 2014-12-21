@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="@dimen/current_playing_height">
 
@@ -18,5 +18,25 @@
         android:id="@+id/playlistItemName"
         android:layout_gravity="center_vertical"
         android:text="Sound Name"
-        android:textSize="@dimen/playlist_item_name_text_size"/>
-</LinearLayout>
+        android:textSize="@dimen/playlist_item_name_text_size"
+        android:layout_marginLeft="4dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/playlistItemIcon"
+        android:layout_toEndOf="@+id/playlistItemIcon" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/iconText"
+        android:layout_alignTop="@+id/playlistItemIcon"
+        android:layout_alignLeft="@+id/playlistItemIcon"
+        android:layout_alignStart="@+id/playlistItemIcon"
+        android:layout_alignBottom="@+id/playlistItemIcon"
+        android:layout_alignRight="@+id/playlistItemIcon"
+        android:layout_alignEnd="@+id/playlistItemIcon"
+        android:textSize="60sp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="#369CEE"/>
+</RelativeLayout>

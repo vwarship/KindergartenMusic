@@ -30,9 +30,10 @@ public class TermFactory {
         String[] names = context.getResources().getStringArray(StringArrayResId);
         for (int i=0; i<names.length; ++i) {
             String name = names[i];
-            String soundPath = String.format("%s/%02d.mp3", dir, i+1);
+            String soundPath = String.format("%s/sound/%02d.mp3", dir, i+1);
+            String iconPath = String.format("%s/icon/%02d.png", dir, i+1);
 
-            playlist.add(new Sound(name, soundPath));
+            playlist.add(new Sound(name, soundPath, iconPath));
         }
 
         return playlist;

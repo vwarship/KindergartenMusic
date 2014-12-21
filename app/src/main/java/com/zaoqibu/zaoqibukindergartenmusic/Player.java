@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
 
 import com.zaoqibu.zaoqibukindergartenmusic.domain.Playlist;
 import com.zaoqibu.zaoqibukindergartenmusic.domain.Sound;
@@ -65,7 +63,7 @@ public class Player {
 
         try {
             //AssetFileDescriptor afd = context.getResources().openRawResourceFd(sound.getFilenameResId());
-            AssetFileDescriptor afd = context.getAssets().openFd(sound.getPath());
+            AssetFileDescriptor afd = context.getAssets().openFd(sound.getSoundPath());
             mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
             afd.close();
 
