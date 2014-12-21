@@ -18,8 +18,8 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="52dp"
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/aboutWeixin"
-        android:layout_toLeftOf="@+id/icon"
+        android:layout_marginLeft="40dp"
         android:text="@string/about_version"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 

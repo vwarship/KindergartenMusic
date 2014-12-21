@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="about_introduction">Play, Learn and Grow Together.</string>
-    <string name="about_version">Version：1.1.0</string>
+    <string name="about_version">Version：1.2.0</string>
     <string name="about_weixin">WeiXin：zaoqibu</string>
     <string name="about_email">Email：zaoqibu@qq.com</string>
     <string name="about_author">Author：Wang Junjian</string>
