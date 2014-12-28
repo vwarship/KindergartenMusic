@@ -16,6 +16,10 @@ import com.zaoqibu.zaoqibukindergartenmusic.domain.Terms;
 import com.zaoqibu.zaoqibukindergartenmusic.util.GridViewUtil;
 import com.zaoqibu.zaoqibukindergartenmusic.util.TermFactory;
 
+import com.umeng.analytics.MobclickAgent;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
@@ -51,8 +55,24 @@ public class MainActivity extends Activity {
                 intent.putExtra(TermActivity.ARG_TERMS, terms);
                 intent.putExtra(TermActivity.ARG_POSITION, position);
                 startActivity(intent);
+
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("term", terms.getTerm(position).getName());
+                MobclickAgent.onEvent(MainActivity.this, "term", map);
             }
         });
+
+        MobclickAgent.setDebugMode(false);
+        MobclickAgent.updateOnlineConfig(this);
+    }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override
@@ -77,6 +97,7 @@ public class MainActivity extends Activity {
         if (id == R.id.action_about) {
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
+            MobclickAgent.onEvent(this, "about");
             return true;
         }
         return super.onOptionsItemSelected(item);

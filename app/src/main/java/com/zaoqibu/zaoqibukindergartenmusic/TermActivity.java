@@ -12,10 +12,13 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.umeng.analytics.MobclickAgent;
 import com.zaoqibu.zaoqibukindergartenmusic.domain.Playlist;
 import com.zaoqibu.zaoqibukindergartenmusic.domain.Terms;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class TermActivity extends Activity {
@@ -71,6 +74,11 @@ public class TermActivity extends Activity {
                         return;
                     }
 
+                    Map<String, String> map = new HashMap<String, String>();
+                    map.put("term", terms.getTerm(position).getName());
+                    map.put("played", playlist.getSound(player.getCurrentPosition()).getName());
+                    MobclickAgent.onEvent(TermActivity.this, "played", map);
+
                     if (isSequencePlay)
                         playSoundByPosition(player.nextPlayIndex());
                     else
@@ -90,6 +98,7 @@ public class TermActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 playSoundByPosition(position);
+                MobclickAgent.onEvent(TermActivity.this, "play_list_item_onclick");
             }
         });
     }
@@ -141,9 +150,11 @@ public class TermActivity extends Activity {
             public void onClick(View v) {
                 if (player.isPlaying()) {
                     player.pause();
+                    MobclickAgent.onEvent(TermActivity.this, "pause");
                 }
                 else {
                     player.play();
+                    MobclickAgent.onEvent(TermActivity.this, "play");
                 }
 
                 setPlayImage();
@@ -157,6 +168,7 @@ public class TermActivity extends Activity {
             @Override
             public void onClick(View v) {
                 playSoundByPosition(player.previousPlayIndex());
+                MobclickAgent.onEvent(TermActivity.this, "play_previous");
             }
         });
     }
@@ -167,6 +179,7 @@ public class TermActivity extends Activity {
             @Override
             public void onClick(View v) {
                 playSoundByPosition(player.nextPlayIndex());
+                MobclickAgent.onEvent(TermActivity.this, "play_next");
             }
         });
     }
@@ -178,6 +191,15 @@ public class TermActivity extends Activity {
 
     private void setPlayImage() {
         playButton.setImageResource(player.isPlaying() ? R.drawable.ic_action_pause : R.drawable.ic_action_play);
+    }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
     @Override
@@ -213,6 +235,8 @@ public class TermActivity extends Activity {
         int id = item.getItemId();
 
         if (id == R.id.action_repeat) {
+            MobclickAgent.onEvent(this, isSequencePlay ? "repeat" : "repeat_one");
+
             item.setIcon(isSequencePlay ? R.drawable.ic_action_repeat_one : R.drawable.ic_action_repeat);
             isSequencePlay = !isSequencePlay;
         }
@@ -222,10 +246,12 @@ public class TermActivity extends Activity {
             if (bedtimePlayBeginTime == 0) {
                 bedtimePlayBeginTime = Calendar.getInstance().getTimeInMillis();
                 toastText = String.format("睡前播放 %d 分钟", bedtimePlayTimeMinute);
+                MobclickAgent.onEvent(this, "bedtime_play");
             }
             else {
                 bedtimePlayBeginTime = 0;
                 toastText = "取消睡前播放设置";
+                MobclickAgent.onEvent(this, "bedtime_play_cancel");
             }
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
 

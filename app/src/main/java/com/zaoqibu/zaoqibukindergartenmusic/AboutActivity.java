@@ -3,6 +3,8 @@ package com.zaoqibu.zaoqibukindergartenmusic;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.umeng.analytics.MobclickAgent;
+
 /**
  * Created by vwarship on 2014/12/17.
  */
@@ -14,4 +16,14 @@ public class AboutActivity extends Activity {
 
         getActionBar().setTitle(R.string.action_about);
     }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
+    }
+
 }
