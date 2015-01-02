@@ -1,11 +1,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity" >
+
     <item android:id="@+id/menu_more"
         android:icon="@drawable/ic_action_overflow"
         android:showAsAction="always"
         android:title="@string/action_overflow">
         <menu>
+            <item
+                android:id="@+id/action_setting"
+                android:orderInCategory="102"
+                android:showAsAction="always"
+                android:icon="@drawable/ic_settings_applications"
+                android:title="@string/title_activity_settings"/>
 
             <item
                 android:id="@+id/action_about"

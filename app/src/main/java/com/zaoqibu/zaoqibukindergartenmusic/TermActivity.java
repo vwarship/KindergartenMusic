@@ -1,9 +1,13 @@
 package com.zaoqibu.zaoqibukindergartenmusic;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,7 +44,6 @@ public class TermActivity extends Activity {
     private boolean isSequencePlay = true;
 
     private long bedtimePlayBeginTime = 0;
-    private static final int bedtimePlayTimeMinute = 30;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +71,7 @@ public class TermActivity extends Activity {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 if (playlist != null) {
-                    if (bedtimePlayBeginTime > 0 && (Calendar.getInstance().getTimeInMillis() - bedtimePlayBeginTime) > bedtimePlayTimeMinute*60*1000) {
+                    if (bedtimePlayBeginTime > 0 && (Calendar.getInstance().getTimeInMillis() - bedtimePlayBeginTime) > getBedtimePlayTimeMillis()) {
                         player.pause();
                         bedtimePlayBeginTime = 0;
                         return;
@@ -245,7 +248,7 @@ public class TermActivity extends Activity {
 
             if (bedtimePlayBeginTime == 0) {
                 bedtimePlayBeginTime = Calendar.getInstance().getTimeInMillis();
-                toastText = String.format("睡前播放 %d 分钟", bedtimePlayTimeMinute);
+                toastText = String.format("睡前播放 %d 分钟", getBedtimePlayTimeMinute());
                 MobclickAgent.onEvent(this, "bedtime_play");
             }
             else {
@@ -259,4 +262,14 @@ public class TermActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private int getBedtimePlayTimeMinute() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        return Integer.parseInt(prefs.getString("bedtime_play_time", "30"));
+    }
+
+    private int getBedtimePlayTimeMillis() {
+        return getBedtimePlayTimeMinute() * 60 * 1000;
+    }
+
 }

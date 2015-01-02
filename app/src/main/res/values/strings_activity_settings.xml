@@ -1,0 +1,15 @@
+<resources>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="pref_title_bedtime_play_time">Bedtime Play Time</string>
+    <string-array name="pref_bedtime_play_time_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+    </string-array>
+    <string-array name="pref_bedtime_play_time_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+    </string-array>
+</resources>

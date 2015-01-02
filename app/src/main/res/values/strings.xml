@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">Zaoqibu Kindergarten Music</string>
-    <string name="action_settings">Settings</string>
     <string name="action_overflow">Overflow</string>
     <string name="action_repeat">Repeat Play</string>
     <string name="action_repeat_one">Repeat One Play</string>
