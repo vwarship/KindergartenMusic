@@ -72,7 +72,9 @@ public class TermActivity extends Activity {
             public void onCompletion(MediaPlayer mp) {
                 if (playlist != null) {
                     if (bedtimePlayBeginTime > 0 && (Calendar.getInstance().getTimeInMillis() - bedtimePlayBeginTime) > getBedtimePlayTimeMillis()) {
-                        player.pause();
+                        if (player.isPlaying())
+                            onPlayClickListener();
+
                         bedtimePlayBeginTime = 0;
                         return;
                     }
@@ -151,18 +153,22 @@ public class TermActivity extends Activity {
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (player.isPlaying()) {
-                    player.pause();
-                    MobclickAgent.onEvent(TermActivity.this, "pause");
-                }
-                else {
-                    player.play();
-                    MobclickAgent.onEvent(TermActivity.this, "play");
-                }
-
-                setPlayImage();
+                onPlayClickListener();
             }
         });
+    }
+
+    private void onPlayClickListener() {
+        if (player.isPlaying()) {
+            player.pause();
+            MobclickAgent.onEvent(this, "pause");
+        }
+        else {
+            player.play();
+            MobclickAgent.onEvent(this, "play");
+        }
+
+        setPlayImage();
     }
 
     private void initPlayPrevious() {
