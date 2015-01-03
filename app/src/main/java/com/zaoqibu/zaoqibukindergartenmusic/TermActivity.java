@@ -133,6 +133,7 @@ public class TermActivity extends Activity {
     private void playSoundByPosition(int position) {
         View view = getViewByPosition(playlistView, position);
         setCurrentPlaying(view);
+        playlistView.setSelection(position);
 
         playButton.setImageResource(R.drawable.ic_action_pause);
         player.play(position);
