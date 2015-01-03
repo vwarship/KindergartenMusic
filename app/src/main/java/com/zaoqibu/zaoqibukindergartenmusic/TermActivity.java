@@ -31,6 +31,7 @@ public class TermActivity extends Activity {
 
     private Terms terms;
     private int position;
+    private String termName;
 
     private Player player;
     private Playlist playlist;
@@ -54,7 +55,7 @@ public class TermActivity extends Activity {
         terms = (Terms)getIntent().getExtras().get(ARG_TERMS);
         position = getIntent().getExtras().getInt(ARG_POSITION);
 
-        String termName = terms.getTerm(position).getName();
+        termName = terms.getTerm(position).getName();
         getActionBar().setTitle(termName);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -108,8 +109,8 @@ public class TermActivity extends Activity {
                 playSoundByPosition(position);
 
                 Map<String, String> map = new HashMap<String, String>();
-                map.put("term", terms.getTerm(position).getName());
-                map.put("sound_name", playlist.getSound(player.getCurrentPosition()).getName());
+                map.put("term", termName);
+                map.put("sound_name", playlist.getSound(position).getName());
                 MobclickAgent.onEvent(TermActivity.this, "play_list_item_onclick", map);
             }
         });

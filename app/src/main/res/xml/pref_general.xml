@@ -4,7 +4,7 @@
         android:key="auto_play_last"
         android:title="@string/pref_title_auto_play_last"
         android:summary="@string/pref_description_auto_play_last"
-        android:defaultValue="true" />
+        android:defaultValue="false" />
 
     <ListPreference
         android:key="bedtime_play_time"

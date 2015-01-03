@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
 
     private boolean isAutoPlayLast() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        return prefs.getBoolean("auto_play_last", true);
+        return prefs.getBoolean("auto_play_last", false);
     }
 
     public void onResume() {
