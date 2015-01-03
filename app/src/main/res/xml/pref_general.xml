@@ -17,7 +17,8 @@
 
     <PreferenceScreen
         android:key="about"
-        android:title="@string/action_about" >
+        android:title="@string/pref_title_about"
+        android:summary="@string/pref_description_about" >
         <intent
             android:action="android.intent.action.MAIN"
             android:targetPackage="com.zaoqibu.zaoqibukindergartenmusic"
