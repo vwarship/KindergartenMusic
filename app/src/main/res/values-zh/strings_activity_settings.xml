@@ -8,7 +8,7 @@
         <item>1 小时</item>
     </string-array>
     <string-array name="pref_bedtime_play_time_values">
-        <item>15</item>
+        <item>1</item>
         <item>30</item>
         <item>60</item>
     </string-array>

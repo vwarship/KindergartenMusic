@@ -72,8 +72,8 @@ public class TermActivity extends Activity {
             public void onCompletion(MediaPlayer mp) {
                 if (playlist != null) {
                     if (bedtimePlayBeginTime > 0 && (Calendar.getInstance().getTimeInMillis() - bedtimePlayBeginTime) > getBedtimePlayTimeMillis()) {
-                        if (player.isPlaying())
-                            onPlayClickListener();
+                        playButton.setImageResource(R.drawable.ic_action_play);
+                        player.pause();
 
                         bedtimePlayBeginTime = 0;
                         return;
@@ -131,9 +131,8 @@ public class TermActivity extends Activity {
         View view = getViewByPosition(playlistView, position);
         setCurrentPlaying(view);
 
+        playButton.setImageResource(R.drawable.ic_action_pause);
         player.play(position);
-
-        setPlayImage();
     }
 
     private View getViewByPosition(ListView listView, int pos) {
@@ -159,6 +158,8 @@ public class TermActivity extends Activity {
     }
 
     private void onPlayClickListener() {
+        setPlayImage();
+
         if (player.isPlaying()) {
             player.pause();
             MobclickAgent.onEvent(this, "pause");
@@ -167,8 +168,6 @@ public class TermActivity extends Activity {
             player.play();
             MobclickAgent.onEvent(this, "play");
         }
-
-        setPlayImage();
     }
 
     private void initPlayPrevious() {
@@ -199,7 +198,7 @@ public class TermActivity extends Activity {
     }
 
     private void setPlayImage() {
-        playButton.setImageResource(player.isPlaying() ? R.drawable.ic_action_pause : R.drawable.ic_action_play);
+        playButton.setImageResource(player.isPlaying() ? R.drawable.ic_action_play : R.drawable.ic_action_pause);
     }
 
     public void onResume() {

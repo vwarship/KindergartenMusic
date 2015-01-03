@@ -4,5 +4,7 @@
 /.idea/libraries
 .DS_Store
 /build
-*.mp3
 /datas
+*.mp3
+*.apk
+manifest-merger-release-report.txt
