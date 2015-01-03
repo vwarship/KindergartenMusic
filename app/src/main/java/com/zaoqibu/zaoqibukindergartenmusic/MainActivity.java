@@ -58,10 +58,11 @@ public class MainActivity extends Activity {
         });
 
         if (isAutoPlayLast()) {
+            MobclickAgent.onEvent(this, "auto_play_last");
             onTermItemClick(getCurrentPositionWithTerm());
         }
 
-        MobclickAgent.setDebugMode(false);
+        MobclickAgent.setDebugMode(true);
         MobclickAgent.updateOnlineConfig(this);
     }
 

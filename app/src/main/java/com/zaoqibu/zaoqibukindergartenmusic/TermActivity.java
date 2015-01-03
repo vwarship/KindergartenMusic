@@ -84,7 +84,7 @@ public class TermActivity extends Activity {
 
                     Map<String, String> map = new HashMap<String, String>();
                     map.put("term", terms.getTerm(position).getName());
-                    map.put("played", playlist.getSound(player.getCurrentPosition()).getName());
+                    map.put("sound_name", playlist.getSound(player.getCurrentPosition()).getName());
                     MobclickAgent.onEvent(TermActivity.this, "played", map);
 
                     if (isSequencePlay)
@@ -106,7 +106,11 @@ public class TermActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 playSoundByPosition(position);
-                MobclickAgent.onEvent(TermActivity.this, "play_list_item_onclick");
+
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("term", terms.getTerm(position).getName());
+                map.put("sound_name", playlist.getSound(player.getCurrentPosition()).getName());
+                MobclickAgent.onEvent(TermActivity.this, "play_list_item_onclick", map);
             }
         });
     }

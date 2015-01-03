@@ -16,10 +16,15 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 
 
+import com.umeng.analytics.MobclickAgent;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On
@@ -40,11 +45,16 @@ public class SettingsActivity extends PreferenceActivity {
      * shown on tablets.
      */
     private static final boolean ALWAYS_SIMPLE_PREFS = false;
+    private static boolean isUserSettings = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        isUserSettings = false;
+
+        MobclickAgent.onEvent(this, "settings");
     }
 
     @Override
@@ -86,6 +96,7 @@ public class SettingsActivity extends PreferenceActivity {
         // their values. When their values change, their summaries are updated
         // to reflect the new value, per the Android Design guidelines.
         bindPreferenceSummaryToValue(findPreference("bedtime_play_time"));
+        isUserSettings = true;
     }
 
     /**
@@ -137,6 +148,12 @@ public class SettingsActivity extends PreferenceActivity {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
+
+            if (isUserSettings) {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("bedtime_play_time_value", stringValue);
+                MobclickAgent.onEvent(preference.getContext(), preference.getKey(), map);
+            }
 
             if (preference instanceof ListPreference) {
                 // For list preferences, look up the correct display value in
@@ -196,6 +213,7 @@ public class SettingsActivity extends PreferenceActivity {
             // updated to reflect the new value, per the Android Design
             // guidelines.
             bindPreferenceSummaryToValue(findPreference("bedtime_play_time"));
+            isUserSettings = true;
         }
     }
 

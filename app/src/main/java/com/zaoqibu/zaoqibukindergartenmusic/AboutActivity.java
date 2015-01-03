@@ -17,6 +17,8 @@ public class AboutActivity extends Activity {
 
         getActionBar().setTitle(R.string.action_about);
         getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        MobclickAgent.onEvent(this, "about");
     }
 
     public void onResume() {
