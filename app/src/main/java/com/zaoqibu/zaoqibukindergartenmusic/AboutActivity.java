@@ -2,6 +2,7 @@ package com.zaoqibu.zaoqibukindergartenmusic;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.umeng.analytics.MobclickAgent;
 
@@ -15,6 +16,7 @@ public class AboutActivity extends Activity {
         setContentView(R.layout.activity_about);
 
         getActionBar().setTitle(R.string.action_about);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void onResume() {
@@ -26,4 +28,15 @@ public class AboutActivity extends Activity {
         MobclickAgent.onPause(this);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

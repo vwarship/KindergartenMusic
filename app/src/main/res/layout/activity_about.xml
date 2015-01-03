@@ -55,10 +55,19 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/aboutVerion"
+        android:id="@+id/aboutQQ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/aboutWeixin"
+        android:layout_alignLeft="@+id/aboutVerion"
+        android:text="@string/about_qq"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/aboutVerion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/aboutQQ"
         android:layout_marginLeft="40dp"
         android:text="@string/about_version"
         android:textAppearance="?android:attr/textAppearanceMedium" />

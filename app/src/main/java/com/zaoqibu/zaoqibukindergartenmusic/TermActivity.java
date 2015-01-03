@@ -56,6 +56,7 @@ public class TermActivity extends Activity {
 
         String termName = terms.getTerm(position).getName();
         getActionBar().setTitle(termName);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         playlist = terms.getTerm(position).getPlaylist();
 
@@ -272,7 +273,11 @@ public class TermActivity extends Activity {
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
 
             return true;
+        } else if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
