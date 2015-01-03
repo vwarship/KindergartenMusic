@@ -62,7 +62,7 @@ public class MainActivity extends Activity {
             onTermItemClick(getCurrentPositionWithTerm());
         }
 
-        MobclickAgent.setDebugMode(true);
+        MobclickAgent.setDebugMode(false);
         MobclickAgent.updateOnlineConfig(this);
     }
 
