@@ -1,6 +1,9 @@
 <resources>
     <string name="title_activity_settings">Settings</string>
 
+    <string name="pref_title_auto_play_last">Automatically and then the last play</string>
+    <string name="pref_description_auto_play_last">After the program is started automatically and then the last play</string>
+
     <string name="pref_title_bedtime_play_time">Bedtime Play Time</string>
     <string-array name="pref_bedtime_play_time_titles">
         <item>15 minutes</item>

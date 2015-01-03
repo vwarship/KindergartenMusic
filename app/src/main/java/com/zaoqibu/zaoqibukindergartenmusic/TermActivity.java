@@ -26,7 +26,6 @@ import java.util.Map;
 
 
 public class TermActivity extends Activity {
-    private static final String SHARED_PREFERENCES_NAME = "com.zaoqibu.zaoqibukindergartenmusic_preferences";
     public static final String ARG_TERMS = "terms";
     public static final String ARG_POSITION = "position";
 
@@ -197,7 +196,7 @@ public class TermActivity extends Activity {
     }
 
     private int getCurrentPositionWithPlaylist(String playlistName) {
-        SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(MainActivity.SHARED_PREFERENCES_NAME, MODE_PRIVATE);
         return prefs.getInt(playlistName, 0);
     }
 
@@ -223,7 +222,7 @@ public class TermActivity extends Activity {
     }
 
     private void setCurrentPositionWithPlaylist(String playlistName, int currentPosition) {
-        SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(MainActivity.SHARED_PREFERENCES_NAME, MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = prefs.edit();
 
         prefsEditor.putInt(playlistName, currentPosition);

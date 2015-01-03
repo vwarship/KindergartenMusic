@@ -2,9 +2,11 @@ package com.zaoqibu.zaoqibukindergartenmusic;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,18 +24,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends Activity {
+    public static final String SHARED_PREFERENCES_NAME = "com.zaoqibu.zaoqibukindergartenmusic_preferences";
     private static final String TAG = "MainActivity";
 
     private Terms terms = new Terms();
 
     public MainActivity() {
-        Log.i(TAG, "MainActivity");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "onCreate");
 
         setContentView(R.layout.activity_main);
 
@@ -51,19 +52,47 @@ public class MainActivity extends Activity {
         gvTerms.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, TermActivity.class);
-                intent.putExtra(TermActivity.ARG_TERMS, terms);
-                intent.putExtra(TermActivity.ARG_POSITION, position);
-                startActivity(intent);
-
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("term", terms.getTerm(position).getName());
-                MobclickAgent.onEvent(MainActivity.this, "term", map);
+                setCurrentPositionWithTerm(position);
+                onTermItemClick(position);
             }
         });
 
+        if (isAutoPlayLast()) {
+            onTermItemClick(getCurrentPositionWithTerm());
+        }
+
         MobclickAgent.setDebugMode(false);
         MobclickAgent.updateOnlineConfig(this);
+    }
+
+    private static final String key_auto_play_last_position = "auto_play_last_position";
+    private void setCurrentPositionWithTerm(int currentPosition) {
+        SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+
+        prefsEditor.putInt(key_auto_play_last_position, currentPosition);
+        prefsEditor.commit();
+    }
+
+    private int getCurrentPositionWithTerm() {
+        SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        return prefs.getInt(key_auto_play_last_position, 0);
+    }
+
+    private void onTermItemClick(int position) {
+        Intent intent = new Intent(this, TermActivity.class);
+        intent.putExtra(TermActivity.ARG_TERMS, terms);
+        intent.putExtra(TermActivity.ARG_POSITION, position);
+        startActivity(intent);
+
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("term", terms.getTerm(position).getName());
+        MobclickAgent.onEvent(this, "term", map);
+    }
+
+    private boolean isAutoPlayLast() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        return prefs.getBoolean("auto_play_last", true);
     }
 
     public void onResume() {
@@ -78,7 +107,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.i(TAG, "onDestroy");
     }
 
     @Override
