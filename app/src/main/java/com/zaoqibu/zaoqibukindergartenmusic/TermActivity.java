@@ -45,6 +45,8 @@ public class TermActivity extends Activity {
 
     private long bedtimePlayBeginTime = 0;
 
+    private MenuItem menuItemBedtimePlay = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +77,7 @@ public class TermActivity extends Activity {
                         playButton.setImageResource(R.drawable.ic_action_play);
                         player.pause();
 
+                        menuItemBedtimePlay.setIcon(R.drawable.ic_action_bedtime_play);
                         bedtimePlayBeginTime = 0;
                         return;
                     }
@@ -249,14 +252,19 @@ public class TermActivity extends Activity {
             isSequencePlay = !isSequencePlay;
         }
         else if (id == R.id.action_bedtime_paly) {
+            menuItemBedtimePlay = item;
             String toastText;
 
             if (bedtimePlayBeginTime == 0) {
+                menuItemBedtimePlay.setIcon(R.drawable.ic_action_bedtime_playing);
+
                 bedtimePlayBeginTime = Calendar.getInstance().getTimeInMillis();
                 toastText = String.format("睡前播放 %d 分钟", getBedtimePlayTimeMinute());
                 MobclickAgent.onEvent(this, "bedtime_play");
             }
             else {
+                menuItemBedtimePlay.setIcon(R.drawable.ic_action_bedtime_play);
+
                 bedtimePlayBeginTime = 0;
                 toastText = "取消睡前播放设置";
                 MobclickAgent.onEvent(this, "bedtime_play_cancel");
