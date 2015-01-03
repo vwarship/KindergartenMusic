@@ -125,13 +125,9 @@ public class MainActivity extends Activity {
         if (id == R.id.action_setting) {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
-        }
-        else if (id == R.id.action_about) {
-            Intent intent = new Intent(this, AboutActivity.class);
-            startActivity(intent);
-            MobclickAgent.onEvent(this, "about");
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }

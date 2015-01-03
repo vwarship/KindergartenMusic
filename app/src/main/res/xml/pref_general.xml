@@ -15,4 +15,13 @@
         android:negativeButtonText="@null"
         android:positiveButtonText="@null" />
 
+    <PreferenceScreen
+        android:key="about"
+        android:title="@string/action_about" >
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="com.zaoqibu.zaoqibukindergartenmusic"
+            android:targetClass="com.zaoqibu.zaoqibukindergartenmusic.AboutActivity" />
+    </PreferenceScreen>
+
 </PreferenceScreen>
