@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -19,13 +20,15 @@ import android.widget.Toast;
 import com.umeng.analytics.MobclickAgent;
 import com.zaoqibu.zaoqibukindergartenmusic.domain.Playlist;
 import com.zaoqibu.zaoqibukindergartenmusic.domain.Terms;
+import com.zaoqibu.zaoqibukindergartenmusic.util.VibratorUtil;
 
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 
-public class TermActivity extends Activity {
+public class TermActivity extends com.zaoqibu.zaoqibukindergartenmusic.util.VibratorUtil {
     public static final String ARG_TERMS = "terms";
     public static final String ARG_POSITION = "position";
 
@@ -256,6 +259,9 @@ public class TermActivity extends Activity {
 
             item.setIcon(isSequencePlay ? R.drawable.ic_action_repeat_one : R.drawable.ic_action_repeat);
             isSequencePlay = !isSequencePlay;
+
+            VibratorUtil.vibrate(this);
+            return true;
         }
         else if (id == R.id.action_bedtime_paly) {
             menuItemBedtimePlay = item;
@@ -275,7 +281,9 @@ public class TermActivity extends Activity {
                 toastText = "取消睡前播放设置";
                 MobclickAgent.onEvent(this, "bedtime_play_cancel");
             }
+
             Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
+            VibratorUtil.vibrate(this);
 
             return true;
         } else if (id == android.R.id.home) {

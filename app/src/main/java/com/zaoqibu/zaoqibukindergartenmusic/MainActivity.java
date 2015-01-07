@@ -1,11 +1,13 @@
 package com.zaoqibu.zaoqibukindergartenmusic;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
@@ -19,6 +21,7 @@ import com.zaoqibu.zaoqibukindergartenmusic.util.GridViewUtil;
 import com.zaoqibu.zaoqibukindergartenmusic.util.TermFactory;
 
 import com.umeng.analytics.MobclickAgent;
+import com.zaoqibu.zaoqibukindergartenmusic.util.VibratorUtil;
 
 import java.util.HashMap;
 import java.util.Map;
