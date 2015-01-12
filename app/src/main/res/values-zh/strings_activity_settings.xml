@@ -4,7 +4,7 @@
     <string name="pref_title_auto_play_last">自动接着上次的播放</string>
     <string name="pref_description_auto_play_last">程序启动后自动接着上次的播放</string>
     <string name="pref_title_about">关于</string>
-    <string name="pref_description_about">早起步幼儿园音乐</string>
+    <string name="pref_description_about">幼儿园音乐</string>
 
     <string name="pref_title_bedtime_play_time">睡前播放时间</string>
     <string-array name="pref_bedtime_play_time_titles">
