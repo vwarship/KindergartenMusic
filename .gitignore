@@ -5,6 +5,6 @@
 .DS_Store
 /build
 /datas
-*.mp3
+assets/
 *.apk
 manifest-merger-release-report.txt

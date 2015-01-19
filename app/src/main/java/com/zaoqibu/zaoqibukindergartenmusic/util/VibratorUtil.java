@@ -7,7 +7,7 @@ import android.os.Vibrator;
 /**
  * Created by vwarship on 2015/1/8.
  */
-public class VibratorUtil extends Activity {
+public class VibratorUtil {
     public static void vibrate(Context context) {
         Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(100);

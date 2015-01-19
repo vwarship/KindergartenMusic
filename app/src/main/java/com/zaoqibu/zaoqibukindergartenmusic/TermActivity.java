@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 
-public class TermActivity extends com.zaoqibu.zaoqibukindergartenmusic.util.VibratorUtil {
+public class TermActivity extends Activity {
     public static final String ARG_TERMS = "terms";
     public static final String ARG_POSITION = "position";
 
