@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/KindergartenMusic.iml" filepath="$PROJECT_DIR$/KindergartenMusic.iml" />
       <module fileurl="file://$PROJECT_DIR$/ZaoqibuKindergartenMusic.iml" filepath="$PROJECT_DIR$/ZaoqibuKindergartenMusic.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
