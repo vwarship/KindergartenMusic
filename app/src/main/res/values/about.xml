@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="about_introduction">Play, Learn and Grow Together.</string>
-    <string name="about_version">Version：1.5.4</string>
-    <string name="about_qq">QQ：zaoqibu@qq.com</string>
-    <string name="about_weixin">WeiXin：zaoqibu</string>
-    <string name="about_email">Email：zaoqibu@qq.com</string>
-    <string name="about_author">Author：Wang Junjian</string>
-    <string name="about_copyright">Copyright @2014-2015 Zaoqibu\nAll Rights Reserved.</string>
+    <string name="about_introduction">一起玩、学习、成长。</string>
+    <string name="about_version">版本号：1.5.5</string>
+    <string name="about_qq">QQ　：zaoqibu@qq.com</string>
+    <string name="about_weixin">微信号：zaoqibu</string>
+    <string name="about_email">邮　箱：zaoqibu@qq.com</string>
+    <string name="about_author">作　者：王军建</string>
+    <string name="about_copyright">版权 @2014-2015 早起步\n保留所有权利</string>
 </resources>
